@@ -104,7 +104,7 @@ def run_subprocess(exe, *args):
     """
     cmd_list = [exe] + cli_args + list(args)
     verbose("bitcoin cli call:\n  {0}\n".format(" ".join(shlex.quote(x) for x in cmd_list)))
-    with subprocess.Popen(cmd_list, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1) as pipe:
+    with subprocess.Popen(cmd_list, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as pipe:
         output, _ = pipe.communicate()
     output = output.decode('ascii')
     retcode = pipe.returncode
@@ -858,7 +858,7 @@ def withdraw_interactive():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('program', choices=[
-                        'entropy', 'create-deposit-data', 'create-withdrawal-data'])
+                        'entropy', 'create-deposit-data', 'create-withdrawal-data', 'start-bitcoind', 'test-qr-code'])
 
     parser.add_argument("--num-keys", type=int,
                         help="The number of keys to create random entropy for", default=1)
@@ -890,3 +890,9 @@ if __name__ == "__main__":
 
     if args.program == "create-withdrawal-data":
         withdraw_interactive()
+
+    if args.program == "start-bitcoind":
+        ensure_bitcoind_running()
+
+    if args.program == "test-qr-code":
+        write_and_verify_qr_code("abc", "abc.png", "abcdef")
