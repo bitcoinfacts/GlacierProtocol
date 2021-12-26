@@ -1,5 +1,0 @@
-1. sha256sum Glacier.pdf
-2. Update SHA256SUMS, replace existing Glacier.pdf SHA with new one
-3. gpg --output SHA256SUMS.sig --detach-sig SHA256SUMS
-4. sha256sum -c SHA256SUMS 2>&1
-5. gpg --verify SHA256SUMS.sig SHA256SUMS
