@@ -303,6 +303,9 @@ def ensure_bitcoind_running():
     # -connect=0.0.0.0 because we're doing local operations only (and have no network connection anyway)
     bitcoind_call("-daemon", "-connect=0.0.0.0")
 
+    # give bitcoind time to start - needed for tests to pass
+    time.sleep(1)
+
     # verify bitcoind started up and is functioning correctly
     times = 0
     while times <= 20:
