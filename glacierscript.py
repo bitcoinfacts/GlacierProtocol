@@ -700,7 +700,7 @@ def deposit_interactive(m, n, dice_seed_length=62, rng_seed_length=20, p2wsh=Fal
 
     safety_checklist()
     ensure_bitcoind_running()
-    require_minimum_bitcoind_version(220000) # getaddressesbylabel API new in v22.0.0
+    require_minimum_bitcoind_version(220000) # decoderawtransaction output changed in v22.0.0
 
     print("\n")
     print("Creating {0}-of-{1} cold storage address.\n".format(m, n))
@@ -759,7 +759,7 @@ def withdraw_interactive():
 
     safety_checklist()
     ensure_bitcoind_running()
-    require_minimum_bitcoind_version(220000) # signrawtransaction API changed in v0.17.0
+    require_minimum_bitcoind_version(220000) # decoderawtransaction output changed in v22.0.0
 
     approve = False
 
